@@ -1,25 +1,15 @@
-# Base sur l'image officielle Node.js
+bashCopy code
+# Use the official Node.js image as the base image
 FROM node:18
 
-# Crée le répertoire de l'application
-WORKDIR /usr/src/app
+# Set the working directory in the container
+WORKDIR /src
 
-# Installe les dépendances de l'application
-# Un wildcard (*) est utilisé pour s'assurer que package.json ET package-lock.json sont bien copiés
-# Les packages qui existent dans package-lock.json seront installés
-COPY package*.json ./
+# Copy the application files into the working directory
+COPY . /src
 
+# Install the application dependencies
 RUN npm install
 
-# Bundle de l'application source
-COPY . .
-
-# Expose le port que le serveur Express utilise
-EXPOSE 5000
-
-# Expose le port que l'application utilise
-# Note: Discord.js utilise généralement des WebSockets, donc il n'est pas nécessaire d'exposer un port 
-# à moins que votre application n'utilise une fonctionnalité qui nécessite l'exposition d'un port.
-
-# Démarre le bot
-CMD [ "node", "bot.js" ]
+# Define the entry point for the container
+CMD ["npm", "bot.js"]
