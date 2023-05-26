@@ -21,4 +21,4 @@ for (const folder of functionFolders) {
 client.handleEvents();
 client.handleCommands();
 client.handleComponents();
-client.login(token); //token en dev et process.env.token en publi
+client.login(process.env.token); //token en dev et process.env.token en publi
