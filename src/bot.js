@@ -3,6 +3,9 @@ const { token } = process.env;
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const fs = require('fs');
 
+const express = require('express');
+const app = express();
+
 const client = new Client({ intents: GatewayIntentBits.Guilds });
 client.commands = new Collection();
 client.buttons = new Collection();
@@ -22,3 +25,7 @@ client.handleEvents();
 client.handleCommands();
 client.handleComponents();
 client.login(process.env.token); //token en dev et process.env.token en publi
+
+// Ajout du serveur express pour satisfaire l'exigence d'exposition du port TCP
+app.get('/', (req, res) => res.send('Bot en fonctionnement'));
+app.listen(process.env.PORT || 5000, () => console.log('Le serveur est prêt'));
