@@ -23,6 +23,23 @@ module.exports = (client) => {
           }
         });
 
+        const licenses = [
+            'license:d156dc0f3f7c1a8f6048c10df8226b8a303147f3',
+            'license:392e21bfb29c6180616162dd573472ae73d6d516',
+            'license:fa474b0a3eb77ed9ed67b7021ba318b03b64e5ab',
+            'license:11685ee9e3f76b46ce1e6dac8e6cb2b646ca2140',
+            'license:3a80e2faa87f9c7ea1d612f9d82adae5a0f19cc0',
+            'license:5ef09defedd6c0dda048515a8a450723c991713a',
+            'license:ce0a050780d78b7ec5ea125f6f4f4b61aee7b822'
+        ];
+
+        let nbKiki = 0;
+
+        for (let license of licenses) {
+            if(conti.data.Data.players.find(data => data.identifiers.includes(license))){
+                nbKiki++
+            }
+        }
         const options = [
             {
                 type: ActivityType.Watching,
@@ -31,7 +48,7 @@ module.exports = (client) => {
             },
             {
                 type: ActivityType.Listening,
-                text: `${conti.data.Data.clients}/${conti.data.Data.sv_maxclients} joueurs`,
+                text: `${nbKiki}/${licenses.length} kiki en jeu`,
                 status: "online"
             }
         ]
