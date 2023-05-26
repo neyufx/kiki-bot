@@ -14,6 +14,9 @@ RUN npm install
 # Bundle de l'application source
 COPY . .
 
+# Expose le port que le serveur Express utilise
+EXPOSE 5000
+
 # Expose le port que l'application utilise
 # Note: Discord.js utilise généralement des WebSockets, donc il n'est pas nécessaire d'exposer un port 
 # à moins que votre application n'utilise une fonctionnalité qui nécessite l'exposition d'un port.
